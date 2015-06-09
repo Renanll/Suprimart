@@ -12,11 +12,16 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 // you can make this class as another java file so it will be separated from your main activity.
 public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
 
-    public String pro = "Produtos:";
-    private ProgressDialog pDialog;
+    public Produto pro = new Produto();
+
+    public Context c = null;
+    ListView LV = null;
+    public ProgressDialog pDialog = null;
 
 
     //url de onde as informacoes serao tiradas
@@ -27,6 +32,11 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPreExecute() {
+
+        pDialog.setMessage("Enchendo as prateleiras.... Aguarde!");
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
 
 
     }
@@ -58,7 +68,11 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
                 int pro_fotoprincipal = c.getInt("pro_fotoprincipal");
                 int pro_codigo = c.getInt("pro_codigo");
 
-                this.pro += " " + pro_nome;
+                this.pro.Nome = pro_nome;
+                this.pro.Preco = pro_preco;
+                this.pro.Tamanho = pro_tamanho;
+                this.pro.FotoPrincipal = pro_fotoprincipal;
+                this.pro.Codigo = pro_codigo;
 
             }
 
@@ -73,8 +87,22 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
 
     @Override
     protected void onPostExecute(String strFromDoInBg) {
+        pDialog.dismiss();
+
+        Produto proList[] =  new Produto[]
+                {
+                        this.pro,
+                        new Produto("Nome do produto", "Tamanho do Produto", 45.4, 1, 1),
+                        new Produto("Nome do produto", "Tamanho do Produto", 45.4, 1, 1),
+                        new Produto("Nome do produto", "Tamanho do Produto", 45.4, 1, 1),
+                        new Produto("Nome do produto", "Tamanho do Produto", 45.4, 1, 1),
+                        new Produto("Nome do produto", "Tamanho do Produto", 45.4, 1, 1)
+                };
 
 
+        ProdutoAdapter adapter = new ProdutoAdapter(c,
+                R.layout.produto, proList);
+        LV.setAdapter(adapter);
 
     }
 }

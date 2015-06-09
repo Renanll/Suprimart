@@ -1,6 +1,8 @@
 package com.suprimart.suprimart;
 
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -37,6 +39,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
         /*
 
         JSONToString str = new JSONToString();
@@ -71,10 +75,13 @@ public class MainActivity extends ActionBarActivity {
         }
 
 
-
-        AsyncTaskParseJson a = new AsyncTaskParseJson();
-        a.execute();
         */
+        AsyncTaskParseJson a = new AsyncTaskParseJson();
+        a.c = this;
+        a.LV = (ListView) findViewById(R.id.list);
+        a.pDialog = new ProgressDialog(MainActivity.this);
+        a.execute();
+        /*
         Login l = new Login("joaovictor_10_4@hotmail.com", "159753");
         Produto p;
         if(l.Sucesso == 1)
@@ -100,10 +107,6 @@ public class MainActivity extends ActionBarActivity {
 
 
         listView1 = (ListView)findViewById(R.id.list);
-
-        //View header = (View)getLayoutInflater().inflate(R.layout.listview_header_row, null);
-        //listView1.addHeaderView(header);
-
         listView1.setAdapter(adapter);
 
         /*
@@ -130,6 +133,74 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
+
+
+    //TODO WORKING CODE
+    /*
+    public void getJson(View view){
+        //callServer("get-json", "");
+    }
+
+
+    private void degenerateJSON(String data){
+
+
+
+        Produto [] pro = null;
+
+        try{
+            JSONObject jo = new JSONObject(data);
+            JSONArray ja = jo.getJSONArray("produto");
+
+            // loop through all users
+            for (int i = 0; i < ja.length(); i++) {
+
+                JSONObject c = ja.getJSONObject(i);
+
+                // Storing each json item in variable
+                String pro_nome = c.getString("pro_nome");
+                String pro_tamanho = c.getString("pro_tamanho");
+                Double pro_preco = c.getDouble("pro_preco");
+                int pro_fotoprincipal = c.getInt("pro_fotoprincipal");
+                int pro_codigo = c.getInt("pro_codigo");
+
+                pro[i].Nome = pro_nome;
+                pro[i].Preco = pro_preco;
+                pro[i].Tamanho = pro_tamanho;
+                pro[i].FotoPrincipal = pro_fotoprincipal;
+                pro[i].Codigo = pro_codigo;
+
+            }
+
+
+            Produto proList[] = pro;
+            ProdutoAdapter adapter = new ProdutoAdapter(this,
+                    R.layout.produto, proList);
+
+
+            listView1 = (ListView)findViewById(R.id.list);
+            listView1.setAdapter(adapter);
+
+
+        }
+        catch(JSONException e){ e.printStackTrace(); }
+
+    }
+    @SuppressLint("NewApi")
+    private void callServer(final String method, final String data){
+        new Thread(){
+            public void run(){
+                String answer = HttpConnection.getSetDataWeb("http://suprimart.com/eloja/app/produto.php", method, data);
+
+                Log.i("Script", "ANSWER: "+answer);
+
+                if(data.isEmpty()){
+                    degenerateJSON(answer);
+                }
+            }
+        }.start();
+    }
+    */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

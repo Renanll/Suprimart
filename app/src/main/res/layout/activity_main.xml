@@ -1,0 +1,33 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <include layout="@layout/menu_superior"/>
+
+    <include layout="@layout/menu_inferior"/>
+
+    <FrameLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_below="@+id/frameLayout"
+        android:id="@+id/frameLayout3"
+        android:foreground="#eaeaea">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Produtos"
+            android:id="@+id/pag_titulo"
+            android:layout_gravity="center"
+            android:textColor="#31353D"
+            android:layout_alignParentTop="false"
+            android:layout_alignTop="@+id/frameLayout3"
+            android:gravity="center_vertical|center_horizontal" />
+    </FrameLayout>
+
+    <include layout="@layout/pro_ver"/>
+
+</RelativeLayout>

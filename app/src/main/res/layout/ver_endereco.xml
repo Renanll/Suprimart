@@ -1,0 +1,38 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#FFF"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_below="@+id/frameLayout3"
+    android:layout_above="@+id/frameLayout2"
+    android:padding="10dp"
+    android:orientation="vertical">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ListView"
+        android:layout_gravity="center_horizontal"
+        android:choiceMode="singleChoice" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Novo Endereço"
+            android:id="@+id/button2"
+            android:layout_gravity="right|center_vertical" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:id="@+id/button3"
+            android:layout_gravity="left|center_vertical" />
+    </FrameLayout>
+
+</LinearLayout>

@@ -26,11 +26,11 @@ public class VerCarrinho extends ActionBarActivity {
         setContentView(R.layout.activity_carrinho);
 
 
-        //Pega o carrinho proveniente da Activity anterior
+        /*Pega o carrinho proveniente da Activity anterior
         Intent intent = getIntent();
         Carrinho = intent.getIntegerArrayListExtra("carrinho");
 
-        //Pega a lista de produtos direto do servidor
+        /*Pega a lista de produtos direto do servidor
         GetCarrinho c = new GetCarrinho();
         c.car = Carrinho;
         c.c = this;
@@ -56,6 +56,16 @@ public class VerCarrinho extends ActionBarActivity {
             }
         });
 
+        //Instanacia o botao FINALIZAR PEDIDO
+        Button but_finalizarpedido = (Button) findViewById(R.id.but_finalizarpedido);
+        but_finalizarpedido.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(VerCarrinho.this, EntrarActivity.class);
+                intent.putExtra("carrinho", Carrinho);
+                startActivity(intent);
+            }
+        });
+
         //Instanacia o botao MINHA CONTA
         Button but_minhaconta = (Button) findViewById(R.id.but_minhaconta);
         but_carrinho.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +75,7 @@ public class VerCarrinho extends ActionBarActivity {
                 intent.putExtra("carrinho", Carrinho);
                 startActivity(intent);
             }
-        });
+        });*/
 
 
 

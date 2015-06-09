@@ -1,17 +1,32 @@
 package com.suprimart.suprimart;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 
 public class VerEnderecoActivity extends ActionBarActivity {
+
+    ArrayList<Integer> Carrinho = new ArrayList();
+    public int pro_codigo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ver_endereco);
+
+        //Pega o carrinho proveniente da Activity anterior
+        Intent intent = getIntent();
+        Carrinho = intent.getIntegerArrayListExtra("carrinho");
+        this.pro_codigo = intent.getIntExtra("elo_codigo", -1);
+
+        Log.e("CODIGO FINAL:", String.valueOf(this.pro_codigo));
+
     }
 
     @Override

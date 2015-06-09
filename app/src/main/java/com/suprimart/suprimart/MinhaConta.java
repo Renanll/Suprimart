@@ -53,6 +53,16 @@ public class MinhaConta extends ActionBarActivity {
             }
         });
 
+        //Instanacia o botao FINALIZAR PEDIDO
+        Button but_finalizarpedido = (Button) findViewById(R.id.but_finalizarpedido);
+        but_finalizarpedido.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent intent = new Intent(MinhaConta.this, EntrarActivity.class);
+                intent.putExtra("carrinho", Carrinho);
+                startActivity(intent);
+            }
+        });
+
         //Instanacia o botao MINHA CONTA
         Button but_minhaconta = (Button) findViewById(R.id.but_minhaconta);
         but_carrinho.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +71,7 @@ public class MinhaConta extends ActionBarActivity {
                 Intent intent = new Intent(MinhaConta.this, VerCarrinho.class);
                 intent.putExtra("carrinho", Carrinho);
                 startActivity(intent);
+
             }
         });
 

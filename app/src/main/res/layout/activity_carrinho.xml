@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:text="Finalizar Pedido"
             android:layout_marginBottom="15dp"
-            android:id="@+id/button5"
+            android:id="@+id/but_finalizarpedido"
             android:background="#FFC107"
             android:layout_gravity="center" />
 

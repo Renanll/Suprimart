@@ -1,5 +1,6 @@
 package com.suprimart.suprimart;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -105,6 +106,11 @@ public class GetLogin extends AsyncTask<String, String, String> {
             intent.putExtra("carrinho", this.car);
             intent.putExtra("elo_codigo", this.elo_codigo);
             c.startActivity(this.intent);
+        }else{
+
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(this);
+
         }
 
 

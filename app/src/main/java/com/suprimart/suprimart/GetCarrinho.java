@@ -14,11 +14,13 @@ import org.json.JSONObject;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 // you can make this class as another java file so it will be separated from your main activity.
-public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
+public class GetCarrinho extends AsyncTask<String, String, String> {
 
     ArrayList<Produto> lista = new ArrayList();
+    public ArrayList<Integer> car = new ArrayList();
 
     public Context c = null;
     ListView LV = null;
@@ -33,7 +35,7 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
     @Override
     protected void onPreExecute() {
 
-        pDialog.setMessage("Enchendo as prateleiras... Aguarde!");
+        pDialog.setMessage("Carregando carrinho...");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
@@ -68,7 +70,8 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
                 int pro_fotoprincipal = c.getInt("pro_fotoprincipal");
                 int pro_codigo = c.getInt("pro_codigo");
 
-                lista.add(new Produto(pro_nome, pro_tamanho, pro_preco, pro_fotoprincipal, pro_codigo));
+                if(car.indexOf(pro_codigo) > -1)
+                    lista.add(new Produto(Collections.frequency(car, pro_codigo)+ " x "+ pro_nome, pro_tamanho, pro_preco, pro_fotoprincipal, pro_codigo));
 
             }
 
@@ -99,7 +102,7 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
 
         */
         ProdutoAdapter adapter = new ProdutoAdapter(c,
-                R.layout.produto, vetor);
+                R.layout.produto_carrinho, vetor);
         LV.setAdapter(adapter);
 
     }

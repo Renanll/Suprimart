@@ -3,42 +3,43 @@ package com.suprimart.suprimart;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 // you can make this class as another java file so it will be separated from your main activity.
-public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
+public class getProdutos extends AsyncTask<String, String, String> {
 
     ArrayList<Produto> lista = new ArrayList();
 
-    public Context c = null;
-    ListView LV = null;
+    private Context c = null;
+    private ListView LV = null;
+    private String url = "";
     public ProgressDialog pDialog = null;
+    private JSONArray dataJsonArr = null;
+    private int Qtd = 10;
+    private int Cat = 0;
 
-    //url de onde as informacoes serao tiradas
-    String yourJsonStringUrl = "http://suprimart.com/eloja/app/produto.php";
 
-    // contacts JSONArray
-    JSONArray dataJsonArr = null;
+    public getProdutos(Context c, ListView lv, String url, ProgressDialog p, int qtd, int categoria){
+        this.c = c;
+        this.LV = lv;
+        this.url = url;
+        this.Qtd = qtd;
+        this.Cat = categoria;
+        this.pDialog = p;
+    }
 
     @Override
     protected void onPreExecute() {
-
         pDialog.setMessage("Enchendo as prateleiras... Aguarde!");
         pDialog.setIndeterminate(false);
         pDialog.setCancelable(false);
         pDialog.show();
-
-
     }
 
     @Override
@@ -51,7 +52,7 @@ public class AsyncTaskParseJson extends AsyncTask<String, String, String> {
             JsonParser jParser = new JsonParser();
 
             // get json string from url
-            JSONObject json = jParser.getJSONFromUrl(yourJsonStringUrl);
+            JSONObject json = jParser.getJSONFromUrl(url);
 
             // get the array of users
             dataJsonArr = json.getJSONArray("produto");

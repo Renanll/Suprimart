@@ -46,7 +46,7 @@ public class JSONToString {
                 inputStream.close();
 
             } else {
-                Log.d("JSON", "Failed to download file");
+                Log.d("JSON", "Failed to downloadfile");
             }
         } catch (Exception e) {
             Log.d("readJSONFeed", e.getMessage());

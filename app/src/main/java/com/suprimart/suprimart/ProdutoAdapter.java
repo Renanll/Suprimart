@@ -11,9 +11,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-/**
- * Created by João on 08/06/2015.
- */
 public class ProdutoAdapter extends ArrayAdapter<Produto> {
 
     Context contexto;
@@ -49,7 +46,7 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> {
             row = inflater.inflate(layoutResourceId, parent, false);
 
             holder = new ProdutoHolder();
-            holder.cFoto = (ImageView)row.findViewById(R.id.pro_foto);
+            //holder.cFoto = (ImageView)row.findViewById(R.id.pro_foto);
             holder.cTitulo = (TextView)row.findViewById(R.id.pro_nome);
             holder.cTamanho = (TextView)row.findViewById(R.id.pro_tamanho);
             holder.cPreco = (TextView)row.findViewById(R.id.pro_preco);
@@ -66,8 +63,8 @@ public class ProdutoAdapter extends ArrayAdapter<Produto> {
         Produto pro = dado[posicao];
         holder.cTitulo.setText(pro.Nome);
         holder.cTamanho.setText(pro.Tamanho);
-        holder.cPreco.setText(String.valueOf(pro.Preco));
-        holder.cCarrinho.setTag(pro.Nome);
+        holder.cPreco.setText("R$ " + String.valueOf(pro.Preco));
+        holder.cCarrinho.setTag(String.valueOf(pro.Codigo));
 
         return row;
     }

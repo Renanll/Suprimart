@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 
 public class VerCarrinho extends ActionBarActivity {
-
-    public static ArrayList<Integer> Carrinho = new ArrayList();
+    Intent intent = getIntent();
+    public ArrayList<Integer> Carrinho = intent.getIntegerArrayListExtra("carrinho");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,11 @@ public class VerCarrinho extends ActionBarActivity {
         for( i = 0; i < Carrinho.size(); i++){
             Log.e("CARRINHO: ", String.valueOf(Carrinho.get(i)));
         }
+
+    }
+
+    public void RemoverCarrinho(View v){
+        Carrinho.remove(Integer.parseInt((String)v.getTag()));
 
     }
 
